@@ -3,7 +3,7 @@
 Mastermind game server API Rest
 
 ROUTES:
-
+ NOMBRE            METODOS                  RUTA
 `api_root          ANY      ANY      ANY    /           `       ->  App root. Contains some information abut this
 api           
 `list_games        GET      ANY      ANY    /game/list  `        ->List all gamens with status 'playing'        
