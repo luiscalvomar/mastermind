@@ -25,7 +25,7 @@ class PlayController extends AbstractController
     {
         $gameId = $request->get('gameId');
         $proposedCode = $request->get('proposedCode');
-        $game = $gameRepository->find($gameId);
+        $game = $gameRepository->findGameWithMoves($gameId);
 
 
         // Check if game exist. If not return error.
@@ -44,7 +44,7 @@ class PlayController extends AbstractController
 
         if($score === 'invalid_color') {
             return $this->json([
-                'error' => 'Wrong color code. Allowed colors are: '.implode(',',Coblunstants::ALLOWED_COLOURS),
+                'error' => 'Wrong color code. Allowed colors are: '.implode(',',Constants::ALLOWED_COLOURS),
             ]);
         }
 
