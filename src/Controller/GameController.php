@@ -42,7 +42,7 @@ class GameController extends AbstractController
         }, $games);
 
         if (empty($gamesArray)) {
-            return $this->json(['message' => 'No games found'], 404);
+            return $this->json(['error' => 'No games found']);
         }
 
         return $this->json($gamesArray);
@@ -58,7 +58,7 @@ class GameController extends AbstractController
     {
         $game = $gameRepository->find($id);
         if (!$game) {
-            return $this->json(['message' => 'Game not found'], 404);
+            return $this->json(['error' => 'Game not found']);
         }
 
         // Construct JSON response

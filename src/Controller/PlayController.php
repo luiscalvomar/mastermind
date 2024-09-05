@@ -30,13 +30,13 @@ class PlayController extends AbstractController
 
         // Check if game exist. If not return error.
         if(!$game) {
-            return $this->json(['error' => 'Game not found'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Game not found']);
         }
 
         // Check game state, ig game does not exist or is finalized, return.
 
         if ($game->getStatus() !== 'playing') {
-            return $this->json(['error' => 'Game ended whith status: '.$game->getStatus()], 400);
+            return $this->json(['error' => 'Game ended whith status: '.$game->getStatus()]);
         }
 
         // Evaluate score
@@ -44,9 +44,8 @@ class PlayController extends AbstractController
 
         if($score === 'invalid_color') {
             return $this->json([
-                'error' => 'Wrong color code. Must select 4 allowed colors',
-                'allowed_colours' => Constants::ALLOWED_COLOURS
-            ], 400);
+                'error' => 'Wrong color code. Allowed colors are: '.implode(',',Coblunstants::ALLOWED_COLOURS),
+            ]);
         }
 
         $play = new Play();
